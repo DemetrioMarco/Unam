@@ -9,71 +9,75 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>PrimeFaces</title>
+                <title>#{bundle.SIPI}</title>
             </f:facet>
         </h:head>
 
-        <h:body style="background: ffff;">
+        <h:body>
 
-            
-            <p:panel>
-                
-                <p:menubar>
-                    <p:submenu label="Mantenimiento">
-                        <p:submenu label="Bancos">
-                            <p:menuitem value="Altas" url="#"/>
-                            <p:menuitem value="Bajas" url="#"/>
-                            <p:menuitem value="Cambios" url="#"/>
-                        </p:submenu>
-                        <p:menuitem value="Reportes" url="#"/>
-                    </p:submenu>
-                    <p:submenu label="Generar Oficios">
-                        <p:submenu label="Tipo de Oficio">
-                            <p:menuitem value="Apertura" url="#"/>
-                            <p:menuitem value="Cancelación" url="#"/>
-                            <p:menuitem value="Actualización" url="#"/>
-                            <p:menuitem value="Entrega de chequera" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Modificar Oficio">
-                            <p:menuitem value="Apertura" url="#"/>
-                            <p:menuitem value="Cancelación" url="#"/>
-                            <p:menuitem value="Actualización" url="#"/>
-                            <p:menuitem value="Entrega de chequera" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Impresión Oficio">
-                            <p:menuitem value="Apertura" url="#"/>
-                            <p:menuitem value="Cancelación" url="#"/>
-                            <p:menuitem value="Actualización" url="#"/>
-                            <p:menuitem value="Entrega de chequera" url="#"/>
-                        </p:submenu>
-                    </p:submenu>
-                    <p:submenu label="Administración Poryectos">
-                        
-                    </p:submenu>
-                    <p:submenu label="Consultas">
-                        
-                    </p:submenu>
-                    <p:submenu label="Saldos">
-                        
-                    </p:submenu>
-                    <p:menuitem value="Salir" url="#" />
-                </p:menubar>
-                
-                
-                
-            </p:panel>
-            
-            
-            <p:panel id="pBancosAltas">
-                <ui:include src="modulos/mantenimiento/Bancos/altas.xhtml" /> 
-            </p:panel>
-            <p:panel id="pBancosBajas">
-                <ui:include src="modulos/mantenimiento/Bancos/bajas.xhtml" /> 
-            </p:panel>
-            <p:panel id="pBancosCambios">
-                <ui:include src="modulos/mantenimiento/Bancos/cambios.xhtml" /> 
-            </p:panel>
+            <h:form>
 
+                <p:panel>
+                    <h1 style="text-align: center">#{bundle.SIPI}</h1>
+
+                    <p:menubar style="margin-left: -20px; margin-right: -20px">
+                        <p:submenu label="#{bundle.Mantenimiento}">
+                            <p:submenu label="#{bundle.Banco}">
+                                <p:menuitem value="#{bundle.Altas}" actionListener="#{Ctrl.altasBancos}" update="@form"/>
+                                <p:menuitem value="#{bundle.Bajas}" actionListener="#{Ctrl.bajasBancos}" update="@form"/>
+                                <p:menuitem value="#{bundle.Cambios}" actionListener="#{Ctrl.cambiosBancos}" update="@form"/>
+                            </p:submenu>
+                            <p:menuitem value="#{bundle.Reportes}" url="#"/>
+                        </p:submenu>
+                        <p:submenu label="#{bundle.GenOf}">
+                            <p:submenu label="#{bundle.TipOf}">
+                                <p:menuitem value="#{bundle.Apertura}" url="#"/>
+                                <p:menuitem value="#{bundle.Cancelacion}" url="#"/>
+                                <p:menuitem value="#{bundle.Actualizacion}" url="#"/>
+                                <p:menuitem value="#{bundle.EntCheq}" url="#"/>
+                            </p:submenu>
+                            <p:submenu label="#{bundle.ModOf}">
+                                <p:menuitem value="#{bundle.Apertura}" url="#"/>
+                                <p:menuitem value="#{bundle.Cancelacion}" url="#"/>
+                                <p:menuitem value="#{bundle.Actualizacion}" url="#"/>
+                                <p:menuitem value="#{bundle.EntCheq}" url="#"/>
+                            </p:submenu>
+                            <p:submenu label="#{bundle.ImpOf}">
+                                <p:menuitem value="#{bundle.Apertura}" url="#"/>
+                                <p:menuitem value="#{bundle.Cancelacion}" url="#"/>
+                                <p:menuitem value="#{bundle.Actualizacion}" url="#"/>
+                                <p:menuitem value="#{bundle.EntCheq}" url="#"/>
+                            </p:submenu>
+                        </p:submenu>
+                        <p:submenu label="#{bundle.AdmProy}">
+
+                        </p:submenu>
+                        <p:submenu label="#{bundle.Consultas}">
+
+                        </p:submenu>
+                        <p:submenu label="#{bundle.Saldos}">
+
+                        </p:submenu>
+                        <p:menuitem value="#{bundle.Salir}" url="#" />
+                    </p:menubar>
+
+
+
+
+
+
+                    <p:panel id="pBancosAltas" rendered="#{Ctrl.btnBancosAltas}" style="border: 0px;">
+                        <ui:include src="modulos/mantenimiento/Bancos/altas.xhtml" /> 
+                    </p:panel>
+                    <p:panel id="pBancosBajas" rendered="#{Ctrl.btnBancosBajas}">
+                        <ui:include src="modulos/mantenimiento/Bancos/bajas.xhtml" /> 
+                    </p:panel>
+                    <p:panel id="pBancosCambios" rendered="#{Ctrl.btnBancosCambios}">
+                        <ui:include src="modulos/mantenimiento/Bancos/cambios.xhtml" /> 
+                    </p:panel>
+
+                </p:panel>
+            </h:form>
         </h:body>
 
     </f:view>
