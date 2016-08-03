@@ -27,45 +27,47 @@
                                 <p:menuitem value="#{bundle.Bajas}" actionListener="#{Ctrl.bajasBancos}" update="@form"/>
                                 <p:menuitem value="#{bundle.Cambios}" actionListener="#{Ctrl.cambiosBancos}" update="@form"/>
                             </p:submenu>
-                            <p:menuitem value="#{bundle.Reportes}" url="#"/>
+                            <p:menuitem value="#{bundle.Reportes}" actionListener="#{Ctrl.reportes}" update="@form"/>
                         </p:submenu>
                         <p:submenu label="#{bundle.GenOf}">
                             <p:submenu label="#{bundle.TipOf}">
-                                <p:menuitem value="#{bundle.Apertura}" url="#"/>
-                                <p:menuitem value="#{bundle.Cancelacion}" url="#"/>
-                                <p:menuitem value="#{bundle.Actualizacion}" url="#"/>
-                                <p:menuitem value="#{bundle.EntCheq}" url="#"/>
+                                <p:menuitem value="#{bundle.Apertura}" actionListener="#{Ctrl.aperturaTipOf}" update="@form"/>
+                                <p:menuitem value="#{bundle.Cancelacion}" actionListener="#{Ctrl.cancelacionTipOf}" update="@form"/>
+                                <p:menuitem value="#{bundle.Actualizacion}" actionListener="#{Ctrl.actualizacionTipOf}" update="@form"/>
+                                <p:menuitem value="#{bundle.EntCheq}" actionListener="#{Ctrl.entregaChequeraTipOf()}" update="@form"/>
                             </p:submenu>
                             <p:submenu label="#{bundle.ModOf}">
-                                <p:menuitem value="#{bundle.Apertura}" url="#"/>
-                                <p:menuitem value="#{bundle.Cancelacion}" url="#"/>
-                                <p:menuitem value="#{bundle.Actualizacion}" url="#"/>
-                                <p:menuitem value="#{bundle.EntCheq}" url="#"/>
+                                <p:menuitem value="#{bundle.Apertura}" actionListener="#{Ctrl.aperturaModOf()}" update="@form"/>
+                                <p:menuitem value="#{bundle.Cancelacion}" actionListener="#{Ctrl.cancelacionModOf()}" update="@form"/>
+                                <p:menuitem value="#{bundle.Actualizacion}" actionListener="#{Ctrl.actualizacionModOf()}" update="@form"/>
+                                <p:menuitem value="#{bundle.EntCheq}" actionListener="#{Ctrl.entregaChequeraModOf()}" update="@form"/>
                             </p:submenu>
                             <p:submenu label="#{bundle.ImpOf}">
-                                <p:menuitem value="#{bundle.Apertura}" url="#"/>
-                                <p:menuitem value="#{bundle.Cancelacion}" url="#"/>
-                                <p:menuitem value="#{bundle.Actualizacion}" url="#"/>
-                                <p:menuitem value="#{bundle.EntCheq}" url="#"/>
+                                <p:menuitem value="#{bundle.Apertura}" actionListener="#{Ctrl.aperturaImpOf()}" update="@form"/>
+                                <p:menuitem value="#{bundle.Cancelacion}" actionListener="#{Ctrl.cancelacionImpOf()}" update="@form"/>
+                                <p:menuitem value="#{bundle.Actualizacion}" actionListener="#{Ctrl.actualizacionImpOf()}" update="@form"/>
+                                <p:menuitem value="#{bundle.EntCheq}" actionListener="#{Ctrl.entregaChequeraImpOf()}" update="@form"/>
                             </p:submenu>
                         </p:submenu>
+
                         <p:submenu label="#{bundle.AdmProy}">
-
                         </p:submenu>
+
                         <p:submenu label="#{bundle.Consultas}">
-
                         </p:submenu>
+
                         <p:submenu label="#{bundle.Saldos}">
-
                         </p:submenu>
-                        <p:menuitem value="#{bundle.Salir}" url="#" />
+
+                        <p:submenu label="#{bundle.Admin}">
+                            <p:menuitem value="#{bundle.Usuarios}" actionListener="#{Ctrl.usuariosAdmin()}" update="@form" />
+                        </p:submenu>
+
+                        <p:menuitem value="#{bundle.Salir}" actionListener="#{Ctrl.init()}" update="@form" />
                     </p:menubar>
 
-
-
-
-
-
+                    <!-- Paneles -->
+                    <!-- Panel de Mantenimiento - Bancos -->
                     <p:panel id="pBancosAltas" rendered="#{Ctrl.btnBancosAltas}" style="border: 0px;">
                         <ui:include src="modulos/mantenimiento/Bancos/altas.xhtml" /> 
                     </p:panel>
@@ -74,6 +76,56 @@
                     </p:panel>
                     <p:panel id="pBancosCambios" rendered="#{Ctrl.btnBancosCambios}">
                         <ui:include src="modulos/mantenimiento/Bancos/cambios.xhtml" /> 
+                    </p:panel>
+                    <!-- Panel de Mantenimiento - Reportes -->                    
+                    <p:panel id="pReportes" rendered="#{Ctrl.btnReportes}">
+                        <ui:include src="modulos/mantenimiento/Reportes/reportes.xhtml" />
+                    </p:panel>
+                    <!-- Panel de Generar Oficio -->
+                    <!-- Paneles de tipo de oficio -->
+                    <p:panel id="pTipOfApertura" rendered="#{Ctrl.btnTipOfApertura}" style="border: 0px;">
+                        <ui:include src="modulos/oficios/TipoOficio/aperturatipOf.xhtml" /> 
+                    </p:panel>
+                    <p:panel id="pTipoOfCancelacion" rendered="#{Ctrl.btnTipOfCancelacion}">
+                        <ui:include src="modulos/oficios/TipoOficio/cancelacionTipOf.xhtml" /> 
+                    </p:panel>
+                    <p:panel id="pTipoOfActualizacion" rendered="#{Ctrl.btnTipOfActualizacion}">
+                        <ui:include src="modulos/oficios/TipoOficio/actualizacionTipOf.xhtml" /> 
+                    </p:panel>
+                    <p:panel id="pTipoOfEntCheq" rendered="#{Ctrl.btnTipOfEntChequera}">
+                        <ui:include src="modulos/oficios/TipoOficio/entregaChequeraTipOf.xhtml" /> 
+                    </p:panel>
+                    <!-- Peneles de Modificacion de oficios --> 
+                    <p:panel id="pModOfApertura" rendered="#{Ctrl.btnModOfApertura}" style="border: 0px;">
+                        <ui:include src="modulos/oficios/ModificarOficio/aperturaModOf.xhtml" /> 
+                    </p:panel>
+                    <p:panel id="pModOfCancelacion" rendered="#{Ctrl.btnModOfCancelacion}">
+                        <ui:include src="modulos/oficios/ModificarOficio/cancelacionModOf.xhtml" /> 
+                    </p:panel>
+                    <p:panel id="pModOfActualizacion" rendered="#{Ctrl.btnModOfActualizacion}">
+                        <ui:include src="modulos/oficios/ModificarOficio/actualizacionModOf.xhtml" /> 
+                    </p:panel>
+                    <p:panel id="pModOfEntCheq" rendered="#{Ctrl.btnModOfEntChequera}">
+                        <ui:include src="modulos/oficios/ModificarOficio/entregaChequeraModOf.xhtml" /> 
+                    </p:panel>
+
+                    <!-- Peneles de impresion de oficios -->
+                    <p:panel id="pImpOfApertura" rendered="#{Ctrl.btnImpOfApertura}" style="border: 0px;">
+                        <ui:include src="modulos/oficios/ImpresionOficio/aperturaImpOf.xhtml" /> 
+                    </p:panel>
+                    <p:panel id="pImpOfCancelacion" rendered="#{Ctrl.btnImpOfCancelacion}">
+                        <ui:include src="modulos/oficios/ImpresionOficio/cancelacionImpOf.xhtml" /> 
+                    </p:panel>
+                    <p:panel id="pImpOfActualizacion" rendered="#{Ctrl.btnImpOfActualizacion}">
+                        <ui:include src="modulos/oficios/ImpresionOficio/actualizacionImpOf.xhtml" /> 
+                    </p:panel>
+                    <p:panel id="pImpOfEntCheq" rendered="#{Ctrl.btnImpOfEntChequera}">
+                        <ui:include src="modulos/oficios/ImpresionOficio/entregaChequeraImpOf.xhtml" /> 
+                    </p:panel>
+
+                    <!-- panel de administracion de usuarios -->
+                    <p:panel id="pAdminUsuario" rendered="#{Ctrl.btnUsuario}" style="border: 0px;">
+                        <ui:include src="modulos/admin/admin.xhtml" />
                     </p:panel>
 
                 </p:panel>
