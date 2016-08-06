@@ -21,7 +21,7 @@
                     <h1 style="text-align: center">#{bundle.SIPI}</h1>
 
                     <p:menubar style="margin-left: -20px; margin-right: -20px">
-                        <p:submenu label="#{bundle.Mantenimiento}">
+                        <p:submenu label="#{bundle.Mantenimiento}" rendered="false">
                             <p:submenu label="#{bundle.Banco}">
                                 <p:menuitem value="#{bundle.Altas}" actionListener="#{Ctrl.altasBancos}" update="@form"/>
                                 <p:menuitem value="#{bundle.Bajas}" actionListener="#{Ctrl.bajasBancos}" update="@form"/>
@@ -50,17 +50,18 @@
                             </p:submenu>
                         </p:submenu>
 
-                        <p:submenu label="#{bundle.AdmProy}">
+                        <p:submenu label="#{bundle.AdmProy}" rendered="false">
                         </p:submenu>
 
-                        <p:submenu label="#{bundle.Consultas}">
+                        <p:submenu label="#{bundle.Consultas}" rendered="false">
                         </p:submenu>
 
-                        <p:submenu label="#{bundle.Saldos}">
+                        <p:submenu label="#{bundle.Saldos}" rendered="false">
                         </p:submenu>
 
-                        <p:submenu label="#{bundle.Admin}">
+                        <p:submenu label="#{bundle.Admin}" rendered="true">
                             <p:menuitem value="#{bundle.Usuarios}" actionListener="#{Ctrl.usuariosAdmin()}" update="@form" />
+                            <p:menuitem value="#{bundle.Cat}" actionListener="#{Ctrl.catalogoAdmin()}" update="@form" />
                         </p:submenu>
 
                         <p:menuitem value="#{bundle.Salir}" actionListener="#{Ctrl.init()}" update="@form" />
@@ -68,7 +69,7 @@
 
                     <!-- Paneles -->
                     <!-- Panel de Mantenimiento - Bancos -->
-                    <p:panel id="pBancosAltas" rendered="#{Ctrl.btnBancosAltas}" style="border: 0px;">
+                    <p:panel id="pBancosAltas" header="Altas" rendered="#{Ctrl.btnBancosAltas}" style="border: 0px;">
                         <ui:include src="modulos/mantenimiento/Bancos/altas.xhtml" /> 
                     </p:panel>
                     <p:panel id="pBancosBajas" rendered="#{Ctrl.btnBancosBajas}">
@@ -83,7 +84,7 @@
                     </p:panel>
                     <!-- Panel de Generar Oficio -->
                     <!-- Paneles de tipo de oficio -->
-                    <p:panel id="pTipOfApertura" rendered="#{Ctrl.btnTipOfApertura}" style="border: 0px;">
+                    <p:panel id="pTipOfApertura" rendered="#{Ctrl.btnTipOfApertura}">
                         <ui:include src="modulos/oficios/TipoOficio/aperturatipOf.xhtml" /> 
                     </p:panel>
                     <p:panel id="pTipoOfCancelacion" rendered="#{Ctrl.btnTipOfCancelacion}">
@@ -125,7 +126,10 @@
 
                     <!-- panel de administracion de usuarios -->
                     <p:panel id="pAdminUsuario" rendered="#{Ctrl.btnUsuario}" style="border: 0px;">
-                        <ui:include src="modulos/admin/admin.xhtml" />
+                        <ui:include src="modulos/admin/usuarios.xhtml" />
+                    </p:panel>
+                    <p:panel id="pAdminCatalogo" rendered="#{Ctrl.btnCatalogos}" style="border: 0px;">
+                        <ui:include src="modulos/admin/catalogos.xhtml" />
                     </p:panel>
 
                 </p:panel>

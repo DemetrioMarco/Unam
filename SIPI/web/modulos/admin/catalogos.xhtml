@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="formCat">
+        <p:growl id="growl" showDetail="true" life="4000" autoUpdate="true" />
+
+        <p:panelGrid id="pgCatRol" style="width: 100%;">
+            <p:row>
+                <p:column style="text-align: center;">
+                    <h2>#{bundle.AdmCat}</h2>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column style="text-align: center;">
+                    <h3>#{bundle.AdmRol}</h3>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                    <h:outputLabel value="Ingrese el rol: " />
+                    <p:inputText value="#{CtrAdm.catRol.rol}"/>
+                    <p:commandButton value="Guardar" actionListener="#{CtrAdm.altaCatalogo()}" update="formCat:pgCatRol formCat:dt" />
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+
+
+        <p:dataTable id="dt" var="cat" value="#{CtrAdm.listRol}">
+            <p:column headerText="ID" style="width: 15px;">
+                <h:outputText value="#{cat.idrol}" />
+            </p:column>
+            <p:column headerText="Rol">
+                <h:outputText value="#{cat.rol}" />
+            </p:column>
+            <p:column headerText="Fecha Ingreso">
+                <h:outputText value="#{cat.fechaIngreso}">
+                    <f:convertDateTime pattern="dd-MMM-yy" />
+                </h:outputText>
+            </p:column>
+            <p:column headerText="Fecha Modificación">
+                <h:outputText value="#{cat.fechaModificacion}" />
+            </p:column>
+            <p:column headerText="Usuario de Ingreso">
+                <h:outputText value="#{cat.usuarioIngreso}" />
+            </p:column>
+            <p:column headerText="Usuario Modificación">
+                <h:outputText value="#{cat.usuarioModificacion}" />
+            </p:column>
+            <p:column headerText="Estatus" style="width: 100px; text-align: center;">
+                <h:outputText value="#{cat.status}" />
+            </p:column>
+        </p:dataTable>
+
+    </h:form>
+</html>

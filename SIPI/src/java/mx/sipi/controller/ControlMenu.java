@@ -5,6 +5,7 @@
  */
 package mx.sipi.controller;
 
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -15,7 +16,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean (name = "Ctrl")
 @SessionScoped
-public class ControlMenu {
+public class ControlMenu implements Serializable{
     
     private boolean btnBancosAltas;
     private boolean btnBancosBajas;
@@ -35,6 +36,7 @@ public class ControlMenu {
     private boolean btnImpOfEntChequera;
 
     private boolean btnUsuario;
+    private boolean btnCatalogos;
     
     @PostConstruct
     public void init(){
@@ -56,6 +58,7 @@ public class ControlMenu {
         btnImpOfEntChequera = false;
         
         btnUsuario = false;
+        btnCatalogos = false;
     }
        
     public void altasBancos(){
@@ -141,6 +144,11 @@ public class ControlMenu {
     public void usuariosAdmin(){
         init();
         btnUsuario = true;
+    }
+    
+    public void catalogoAdmin(){
+        init();
+        btnCatalogos = true;
     }
     
     //Get and Set
@@ -278,6 +286,14 @@ public class ControlMenu {
 
     public void setBtnUsuario(boolean btnUsuario) {
         this.btnUsuario = btnUsuario;
+    }
+
+    public boolean isBtnCatalogos() {
+        return btnCatalogos;
+    }
+
+    public void setBtnCatalogos(boolean btnCatalogos) {
+        this.btnCatalogos = btnCatalogos;
     }
     
 }

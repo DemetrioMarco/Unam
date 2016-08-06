@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="formUser" style="border: 0px;" >
+        <p:growl showDetail="true" life="4000" autoUpdate="true" />
+        
+        <p:panelGrid>
+            <p:row>
+                <p:column>
+                    <h:outputText value="Ingrese Nombre:" />
+                    <p:inputText value="#{CtrAdm.opUsuarios.name}" />
+                </p:column>
+                <p:column>
+                    <h:outputText value="Ingrese Usuario: " />
+                    <p:inputText value="#{CtrAdm.opUsuarios.username}" />
+                </p:column>
+                <p:column>
+                    <h:outputText value="Ingrese Contraseña:" />
+                    <p:inputText value="#{CtrAdm.opUsuarios.username}" />
+                </p:column>
+                <p:column>
+                    <h:outputText value="Seleccione Perfil:" />
+                    <p:selectOneMenu value="#{CtrAdm.idrol}" requiredMessage="Seleccione un Rol">
+                        <f:selectItem itemLabel="Seleccione una opción" noSelectionOption="true" />
+                        <f:selectItems value="#{CtrAdm.listRol}"
+                                       var="perfil"
+                                       itemValue="#{perfil.idrol}"
+                                       itemLabel="#{perfil.rol}" />
+                    </p:selectOneMenu>
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Guardar" action="#{CtrAdm.altaUsuario()}" update="formUser:dtUser" />
+                </p:column>
+            </p:row>
+
+        </p:panelGrid>
+        <p:dataTable id="dtUser" var="us" value="#{CtrAdm.listUser}">
+            <p:column headerText="ID" style="width: 15px;">
+                <h:outputText value="#{us.iduser}" />
+            </p:column>
+            <p:column headerText="Nombre">
+                <h:outputText value="#{us.name}" />
+            </p:column>
+            <p:column headerText="Usuario">
+                <h:outputText value="#{us.username}" />
+            </p:column>
+            <p:column headerText="Clave">
+                <h:outputText value="#{us.password}" />
+            </p:column>
+            <p:column headerText="Estatus">
+                <h:outputText value="#{us.status}" />
+            </p:column>
+        </p:dataTable>
+     
+
+
+    </h:form>
+
+</html>
